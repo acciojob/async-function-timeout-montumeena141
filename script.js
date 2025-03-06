@@ -1,27 +1,12 @@
-document.getElementById("messageForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent page refresh
-    displayMessage();
-});
-
-async function displayMessage() {
-    const text = document.getElementById("text").value.trim();
-    const delay = parseInt(document.getElementById("delay").value, 10);
-    const output = document.getElementById("output");
-
-    // Validation
-    if (!text || isNaN(delay) || delay < 0) {
-        output.innerText = "Please enter valid text and delay.";
-        return;
-    }
-
-    output.innerHTML = ""; // Ensure the output div is empty before test starts
-
-    // Use a span to make Cypress recognize changes easily
-    const span = document.createElement("span");
-    span.innerText = "Waiting...";
-    output.appendChild(span);
-
+//your JS code here. If required.
+async function displayMessage(text, delay) {
     await new Promise(resolve => setTimeout(resolve, delay));
-
-    span.innerText = text; // Update after delay
+    document.getElementById('output').innerText = text;
 }
+
+// Add event listener to the button
+document.getElementById('btn').addEventListener('click', async function() {
+    let text = document.getElementById('text').value;
+    let delay = document.getElementById('delay').value;
+    await displayMessage(text, delay);
+});
