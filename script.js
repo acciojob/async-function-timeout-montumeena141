@@ -1,6 +1,10 @@
 const btn = document.getElementById("btn");
 const output = document.getElementById("output");
 
+function delayFunction(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function displayMessage() {
     const text = document.getElementById("text").value;
     const delay = parseInt(document.getElementById("delay").value, 10);
@@ -10,12 +14,11 @@ async function displayMessage() {
         return;
     }
 
-    output.innerText = "Waiting...";
+    output.innerText = ""; // Ensure Cypress finds it empty
 
+    await delayFunction(delay);  // Now truly waits
 
-    setTimeout(() => {
-        output.innerText = text;
-    }, delay);
+    output.innerText = text;
 }
 
 btn.addEventListener("click", displayMessage);
