@@ -8,9 +8,11 @@
 </head>
 <body>
     <div class="container">
-        <input type="text" id="text" placeholder="Enter message">
-        <input type="number" id="delay" placeholder="Enter delay in ms">
-        <button id="btn">Submit</button>
+        <form id="messageForm">  <!-- Added form -->
+            <input type="text" id="text" placeholder="Enter message">
+            <input type="number" id="delay" placeholder="Enter delay in ms">
+            <button id="btn" type="submit">Submit</button>
+        </form>
         <div id="output"></div>
     </div>
 
