@@ -1,5 +1,5 @@
 document.getElementById("messageForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form from refreshing the page
+    event.preventDefault(); // Prevent page refresh
     displayMessage();
 });
 
@@ -14,10 +14,14 @@ async function displayMessage() {
         return;
     }
 
-    output.innerText = "Waiting...";
+    output.innerHTML = ""; // Ensure the output div is empty before test starts
 
-    // Simulating delay with Promise
+    // Use a span to make Cypress recognize changes easily
+    const span = document.createElement("span");
+    span.innerText = "Waiting...";
+    output.appendChild(span);
+
     await new Promise(resolve => setTimeout(resolve, delay));
 
-    output.innerText = text;
+    span.innerText = text; // Update after delay
 }
